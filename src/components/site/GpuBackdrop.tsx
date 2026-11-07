@@ -50,6 +50,7 @@ export function GpuBackdrop() {
           <path d="M500 51v353M469 39h62M489 0h22v29h-22Z" />
         </g>
       </svg>
+      </div>
     </div>
   );
 }
