@@ -34,3 +34,4 @@ use the editor.
 - Keep decorative GPU artwork in a browser-safe SVG component with CSS motion and a static reduced-motion fallback, so it remains crisp without adding playback dependencies.
 - Deliver native-app restyling as stylesheet-only changes against original repository source, preserving HTML, JavaScript, Python, API contracts and permissions byte-for-byte to avoid replacing real behavior with simulations.
 - Keep the marketing website at /website; the root opens /compare with original and restyled source markup, explicitly visual-only because native behavior runs in the Mac app.
+- Export website and native app into separate repositories; the website export excludes simulated-app and comparison routes, while the app export preserves upstream executable source and applies only native stylesheet and texture changes.
