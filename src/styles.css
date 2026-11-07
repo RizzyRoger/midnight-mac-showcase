@@ -128,7 +128,7 @@
   --nav-edge-line: var(--foreground);
   --motion-gpu-cycle: 8s;
   --motion-hardware-loop: 16s;
-  --motion-quote-intro: 6s;
+  --motion-presentation-loop: 24s;
   --gpu-line: color-mix(in oklch, var(--foreground) 48%, var(--line));
   --gpu-fill: color-mix(in oklch, var(--background) 85%, transparent);
 }
@@ -198,30 +198,32 @@
 .home-hero { position: relative; isolation: isolate; overflow: hidden; }
 .gpu-backdrop { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .gpu-quote {
-  position: absolute; right: 18%; bottom: 7%;
-  display: flex; align-items: center; gap: 18px; max-width: 560px;
+  position: absolute; right: 4%; top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center; gap: 24px; width: min(520px, 40%);
   border: 2px solid var(--line); border-left: 3px solid var(--primary);
   background: color-mix(in oklch, var(--background) 88%, transparent);
-  padding: 18px 20px; opacity: 0;
-  animation: gpu-quote-intro var(--motion-quote-intro) ease-in-out 1 forwards;
+  padding: 24px; opacity: 0;
+  animation: gpu-quote-loop var(--motion-presentation-loop) ease-in-out infinite;
 }
-.gpu-quote-portrait { width: 96px; height: 96px; image-rendering: pixelated; border: 2px solid var(--line); flex-shrink: 0; }
-.gpu-quote-text { margin: 0; font: 15px/1.5 var(--font-mono); color: var(--foreground); }
-.gpu-quote-cite { display: block; margin-top: 8px; font-size: 11px; font-style: normal; color: var(--primary); text-transform: uppercase; letter-spacing: .08em; }
-.gpu-loop { position: absolute; inset: 0; opacity: 0; animation: gpu-loop-in .8s ease calc(var(--motion-quote-intro) - .8s) 1 forwards; }
-@keyframes gpu-quote-intro { 0% { opacity: 0; transform: translateX(24px); } 10%, 78% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(-24px); } }
-@keyframes gpu-loop-in { to { opacity: 1; } }
+.gpu-quote-portrait { width: 160px; height: 160px; object-fit: cover; image-rendering: pixelated; border: 2px solid var(--line); flex-shrink: 0; }
+.gpu-quote-text { margin: 0; min-width: 0; font: 19px/1.5 var(--font-mono); color: var(--foreground); }
+.gpu-quote-text p { margin: 12px 0; }
+.gpu-quote-cite { display: block; font-size: 10px; line-height: 1.6; font-style: normal; color: var(--primary); text-transform: uppercase; letter-spacing: 0; }
+.gpu-loop { position: absolute; inset: 0; opacity: 0; animation: gpu-loop-visibility var(--motion-presentation-loop) linear infinite; }
+@keyframes gpu-quote-loop { 0%, 33.333%, 100% { opacity: 0; transform: translate(24px, -50%); } 4%, 28% { opacity: 1; transform: translate(0, -50%); } }
+@keyframes gpu-loop-visibility { 0%, 31%, 100% { opacity: 0; } 33.333%, 96% { opacity: 1; } }
+.gpu-loop * { animation-delay: 8s; }
 .gpu-art { position: absolute; width: min(1200px, 110%); height: 100%; right: 16%; top: 0; stroke: var(--gpu-line); stroke-width: 1.6; stroke-linejoin: bevel; opacity: .45; }
 .gpu-face, .gpu-side { fill: var(--gpu-fill); }
 .gpu-fin { stroke-width: .8; }
 .gpu-chip { fill: var(--background); }
 .gpu-contact { stroke-width: 3; }
 .hardware-item { animation: hardware-conveyor var(--motion-hardware-loop) ease-in-out infinite; }
-.hardware-ram { animation-delay: -8s; }
+.hardware-ram { animation-delay: 0s; }
 .gpu-model { fill: var(--gpu-line); stroke: none; font: 16px var(--font-mono); }
 .gpu-half { animation: gpu-left var(--motion-hardware-loop) ease-in-out infinite; }
 .gpu-half-right { animation-name: gpu-right; }
-.hardware-ram .gpu-half { animation-delay: -8s; }
+.hardware-ram .gpu-half { animation-delay: 0s; }
 .gpu-cut { stroke: var(--primary); stroke-width: 2; stroke-dasharray: 423; stroke-dashoffset: 423; animation: gpu-cut var(--motion-gpu-cycle) ease-in-out infinite; }
 .gpu-sparks { stroke: var(--primary); }
 .gpu-spark { opacity: 0; animation: spark-left-up var(--motion-gpu-cycle) linear infinite; }
@@ -238,7 +240,10 @@
 @keyframes spark-left-down { 0%, 40%, 100% { transform: translate(0, 0); opacity: 0; } 42% { transform: translate(-4px, 2px); opacity: .9; } 60%, 99% { transform: translate(-155px, 95px); opacity: 0; } }
 @keyframes spark-right-down { 0%, 40%, 100% { transform: translate(0, 0); opacity: 0; } 42% { transform: translate(4px, 2px); opacity: .9; } 60%, 99% { transform: translate(110px, 75px); opacity: 0; } }
 @keyframes gpu-blade { 0%, 26% { transform: translateY(-450px); opacity: 0; } 30% { opacity: .8; } 48% { transform: translateY(170px); opacity: .8; } 56%, 100% { transform: translateY(450px); opacity: 0; } }
-@media (max-width: 767px) { .gpu-art { width: 155%; right: -40%; opacity: .28; } .gpu-quote { right: 4%; left: 4%; max-width: none; gap: 12px; padding: 12px 14px; } .gpu-quote-portrait { width: 64px; height: 64px; } .gpu-quote-text { font-size: 12px; } }
+@media (max-width: 1199px) { .gpu-quote { gap: 14px; padding: 18px; width: 39%; } .gpu-quote-portrait { width: 112px; height: 112px; } .gpu-quote-text { font-size: 16px; } }
+@media (max-width: 899px) { .home-hero > .relative { padding-bottom: 300px; } .gpu-quote { right: 4%; left: 4%; width: auto; top: auto; bottom: 26px; transform: none; animation-name: gpu-quote-loop-small; } .gpu-quote-portrait { width: 128px; height: 128px; } .gpu-quote-text { font-size: 18px; } }
+@keyframes gpu-quote-loop-small { 0%, 33.333%, 100% { opacity: 0; transform: translateX(24px); } 4%, 28% { opacity: 1; transform: translateX(0); } }
+@media (max-width: 767px) { .gpu-art { width: 155%; right: -40%; opacity: .28; } .gpu-quote { gap: 12px; padding: 14px; } .gpu-quote-portrait { width: 104px; height: 104px; } .gpu-quote-text { font-size: 16px; } }
 .part-panel { display: flex; flex-direction: column; transition: transform 180ms ease, box-shadow 180ms ease; }
 .part-panel > div { flex: 1; }
 .capability-tile { transition: background-color 180ms ease; }
