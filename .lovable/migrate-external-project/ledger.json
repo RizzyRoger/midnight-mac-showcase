@@ -1,9 +1,10 @@
 {
   "source": "https://github.com/RizzyRoger/SlashCompute-V2",
-  "scope": "Interactive browser preview, not native-runtime migration",
+  "scope": "Original native Mac app, stylesheet-only restyle; hosted comparison is visual-only",
   "capabilities": [
-    {"capability":"App screens and controls","source":"Python desktop app","outcome":"Recreate in browser using existing visual style","status":"in_progress","next_action":"Implement and verify all requested screens"},
-    {"capability":"Native inference, local processes and filesystem","source":"Python app runtime","outcome":"Preview-only simulation; no native execution","status":"out_of_scope","next_action":"Native Mac app required for real hardware and files"},
-    {"capability":"Accounts, wallet and network data","source":"Repository services","outcome":"Clearly labeled temporary preview state, no real accounts or money","status":"out_of_scope","next_action":"Connect live services only if separately requested"}
+    {"capability":"App screens and controls","source":"Original repository HTML and JavaScript","outcome":"Preserved unchanged; only stylesheet replaced and texture added","status":"verified","next_action":"All seven sections visually inspected; 247 original app tests passed"},
+    {"capability":"Native inference, local processes and filesystem","source":"Original Python app runtime","outcome":"Preserved byte-for-byte in downloadable source","status":"verification_pending","next_action":"Run on a Mac with a real inference pool; sandbox has neither"},
+    {"capability":"Accounts, wallet and network data","source":"Original repository services","outcome":"Preserved byte-for-byte, including test-only purchase behavior","status":"verification_pending","next_action":"Verify real sign-in, contribution and transactions against a live coordinator"},
+    {"capability":"Side-by-side comparison","source":"Original HTML and original/restyled CSS","outcome":"Both panes show original controls, no fake operations","status":"verified","next_action":"Visual-only; use the downloadable source to run native functions"}
   ]
 }
