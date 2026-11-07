@@ -1,2 +1,3 @@
-import { createFileRoute, redirect } from '@tanstack/react-router';
-export const Route=createFileRoute('/app/')({beforeLoad:()=>{throw redirect({to:'/app/connect'})},head:()=>({meta:[{title:'SlashCompute workspace'},{name:'description',content:'Open the SlashCompute interactive app workspace.'},{property:'og:title',content:'SlashCompute workspace'},{property:'og:description',content:'Connect to the SlashCompute app preview.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]})});
+import { createFileRoute } from '@tanstack/react-router';
+import { NativeAppPreview } from '@/components/NativeAppPreview';
+export const Route=createFileRoute('/app/')({component:NativeAppPreview,head:()=>({meta:[{title:'Final Mac app — SlashCompute'},{name:'description',content:'The final styled native SlashCompute Mac interface. Native operations run in the Mac app.'},{property:'og:title',content:'SlashCompute final Mac app'},{property:'og:description',content:'Explore the final laptop-focused SlashCompute interface.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]})});
