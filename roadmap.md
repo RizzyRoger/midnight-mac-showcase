@@ -1,4 +1,5 @@
 # Website updates
+- [ ] Remove the original/comparison view from the app experience; show only the final styled native markup.
 - [ ] Upload the website and native app together to one public GitHub repository, preserving native app source and keeping website files in a separate folder.
 - [x] Make the native app laptop-focused with presentation-only changes.
 - [x] Make the larger Sam portrait and concept text recur within the hardware animation loop; do not attribute an unverified quote.
