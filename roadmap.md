@@ -1,4 +1,7 @@
 # Website updates
+- [ ] Make the native app laptop-focused with presentation-only changes.
+- [ ] Make the larger Sam portrait and quote recur within the hardware animation loop.
+- [ ] Update both public repositories with completed changes; uploads need GitHub approval after a declined asset upload.
 - [x] Remove the illustrative homepage chat window.
 - [ ] Create and populate separate public GitHub repositories for the website and original restyled Mac app.
 - [x] Add textured palette, layered surfaces, restrained hover motion and screen-edge fades.
