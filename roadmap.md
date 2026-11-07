@@ -3,3 +3,10 @@
 - [x] Add three related images and emphasize privacy choices.
 - [x] Remove invented ticker statistics and correct capability claims.
 - [x] Verify desktop/mobile presentation and relevant tests.
+- [x] Refine only the top navigation's bottom glow and hover/current/focus indicators.
+- [x] Show coming-soon labels for unavailable editing and terminal tools.
+- [x] Add a reference-inspired, vertically sliced GPU homepage background with reduced-motion support.
+- [x] Verify navigation and GPU animation on desktop and mobile.
+- [x] Restore the white navigation divider.
+- [x] Redraw reference-style GPU and RAM, alternating slices and leftward exits forever.
+- [x] Verify the complete loop and static reduced-motion state.

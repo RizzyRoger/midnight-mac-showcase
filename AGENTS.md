@@ -31,3 +31,4 @@ use the editor.
 
 - Keep current capability availability in a shared browser-safe module, so home content and previews cannot disagree about supported tools.
 - Use global semantic surface, texture, shadow and motion tokens for layered presentation; screen-edge overlays must never capture pointer events or cover navigation.
+- Keep decorative GPU artwork in a browser-safe SVG component with CSS motion and a static reduced-motion fallback, so it remains crisp without adding playback dependencies.
