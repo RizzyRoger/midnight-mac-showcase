@@ -7,6 +7,6 @@
 - [x] Show coming-soon labels for unavailable editing and terminal tools.
 - [x] Add a reference-inspired, vertically sliced GPU homepage background with reduced-motion support.
 - [x] Verify navigation and GPU animation on desktop and mobile.
-- [ ] Restore the white navigation divider.
-- [ ] Redraw reference-style GPU and RAM, alternating slices and leftward exits forever.
-- [ ] Verify the complete loop and static reduced-motion state.
+- [x] Restore the white navigation divider.
+- [x] Redraw reference-style GPU and RAM, alternating slices and leftward exits forever.
+- [x] Verify the complete loop and static reduced-motion state.
