@@ -17,6 +17,7 @@ import { Route as DownloadRouteImport } from './routes/download'
 import { Route as NetworkRouteImport } from './routes/network'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as WebsiteRouteImport } from './routes/website'
+import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAccountRouteImport } from './routes/app.account'
 import { Route as AppChatRouteImport } from './routes/app.chat'
 import { Route as AppCodeRouteImport } from './routes/app.code'
@@ -64,6 +65,11 @@ const WebsiteRoute = WebsiteRouteImport.update({
   id: '/website',
   path: '/website',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
 } as any)
 const AppAccountRoute = AppAccountRouteImport.update({
   id: '/account',
@@ -117,10 +123,10 @@ export interface FileRoutesByFullPath {
   '/app/contribute': typeof AppContributeRoute
   '/app/leaderboard': typeof AppLeaderboardRoute
   '/app/wallet': typeof AppWalletRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/app': typeof AppRouteWithChildren
   '/contribute': typeof ContributeRoute
   '/demo': typeof DemoRoute
   '/download': typeof DownloadRoute
@@ -134,6 +140,7 @@ export interface FileRoutesByTo {
   '/app/contribute': typeof AppContributeRoute
   '/app/leaderboard': typeof AppLeaderboardRoute
   '/app/wallet': typeof AppWalletRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,6 +159,7 @@ export interface FileRoutesById {
   '/app/contribute': typeof AppContributeRoute
   '/app/leaderboard': typeof AppLeaderboardRoute
   '/app/wallet': typeof AppWalletRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,10 +179,10 @@ export interface FileRouteTypes {
     | '/app/contribute'
     | '/app/leaderboard'
     | '/app/wallet'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/app'
     | '/contribute'
     | '/demo'
     | '/download'
@@ -188,6 +196,7 @@ export interface FileRouteTypes {
     | '/app/contribute'
     | '/app/leaderboard'
     | '/app/wallet'
+    | '/app'
   id:
     | '__root__'
     | '/'
@@ -205,6 +214,7 @@ export interface FileRouteTypes {
     | '/app/contribute'
     | '/app/leaderboard'
     | '/app/wallet'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -276,6 +286,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WebsiteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/account': {
       id: '/app/account'
       path: '/account'
@@ -336,6 +353,7 @@ interface AppRouteChildren {
   AppContributeRoute: typeof AppContributeRoute
   AppLeaderboardRoute: typeof AppLeaderboardRoute
   AppWalletRoute: typeof AppWalletRoute
+  AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -346,6 +364,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppContributeRoute: AppContributeRoute,
   AppLeaderboardRoute: AppLeaderboardRoute,
   AppWalletRoute: AppWalletRoute,
+  AppIndexRoute: AppIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
