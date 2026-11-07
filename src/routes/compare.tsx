@@ -1,7 +1,23 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-const screens=['connect','account','contribute','chat','code','wallet','leaderboard'] as const;
-export const Route=createFileRoute('/compare')({head:()=>({meta:[{title:'Original vs restyled native app — SlashCompute'},{name:'description',content:'The original SlashCompute repository interface compared with a stylesheet-only restyle for the Mac app.'},{property:'og:title',content:'SlashCompute native app styling comparison'},{property:'og:description',content:'Identical original app controls with the website’s dark mechanical styling. Native operations run in the Mac app, not this visual comparison.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Compare});
-function Compare(){const [screen,setScreen]=useState<typeof screens[number]>('connect');return <div className="preview-comparison"><header className="comparison-topbar"><div><Link to="/compare" className="preview-brand"><span>/</span>COMPUTE <small>NATIVE APP RESTYLE</small></Link><p>Same original app controls · stylesheet-only changes · visual comparison, not a running Mac app</p></div><Button asChild variant="brutOutline"><Link to="/website">Website <ArrowUpRight/></Link></Button></header><nav className="comparison-screen-nav" aria-label="Compare screens">{screens.map(s=><Button key={s} variant="ghost" className={screen===s?'is-active':''} aria-pressed={screen===s} onClick={()=>setScreen(s)}>{s.charAt(0).toUpperCase()+s.slice(1)}</Button>)}</nav><div className="comparison-panes"><section><div className="comparison-pane-title"><div><strong>01 / ORIGINAL</strong><span>Original repository interface · visual only here</span></div><a href="https://github.com/RizzyRoger/SlashCompute-V2" target="_blank" rel="noopener noreferrer" title="Open original repository" aria-label="Open original repository"><ArrowUpRight size={18}/></a></div><iframe key={`original-${screen}`} title="Original GitHub app interface" src={`/reference/original-app.html#${screen}`} sandbox="allow-same-origin"/></section><section><div className="comparison-pane-title"><div><strong>02 / RESTYLED NATIVE APP</strong><span>Original HTML controls unchanged · only CSS replaced</span></div></div><iframe key={`restyled-${screen}`} title="Restyled original Mac app interface" src={`/reference/restyled-native-app.html#${screen}`} sandbox="allow-same-origin"/></section></div></div>}
+import { createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/compare")({
+  head: () => ({
+    meta: [
+      { title: "SlashCompute" },
+      { httpEquiv: "refresh", content: "0; url=/" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+  }),
+  component: RedirectHome,
+});
+
+function RedirectHome() {
+  return (
+    <main className="mx-auto max-w-3xl px-4 py-16">
+      <p>
+        This page has moved. <a href="/">Continue to the website</a>
+      </p>
+      <script dangerouslySetInnerHTML={{ __html: 'location.replace("/")' }} />
+    </main>
+  );
+}

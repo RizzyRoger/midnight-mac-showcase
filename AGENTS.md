@@ -33,4 +33,4 @@ use the editor.
 - Use global semantic surface, texture, shadow and motion tokens for layered presentation; screen-edge overlays must never capture pointer events or cover navigation.
 - Keep decorative GPU artwork in a browser-safe SVG component with CSS motion and a static reduced-motion fallback, so it remains crisp without adding playback dependencies.
 - Deliver native-app restyling as stylesheet-only changes against original repository source, preserving HTML, JavaScript, Python, API contracts and permissions byte-for-byte to avoid replacing real behavior with simulations.
-- Keep the marketing website at /website; the root opens /compare with original and restyled source markup, explicitly visual-only because native behavior runs in the Mac app.
+- The marketing website is the root page. `/compare` and `/website` redirect there. Native behavior runs in the Mac app, not on this site.

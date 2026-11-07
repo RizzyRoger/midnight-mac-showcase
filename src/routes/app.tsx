@@ -1,2 +1,8 @@
-import { createFileRoute, redirect, Outlet } from '@tanstack/react-router';
-export const Route=createFileRoute('/app')({beforeLoad:()=>{throw redirect({to:'/compare'});},component:Outlet});
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/app")({
+  beforeLoad: () => {
+    throw redirect({ to: "/" });
+  },
+  component: Outlet,
+});
