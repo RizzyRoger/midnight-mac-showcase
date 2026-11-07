@@ -14,3 +14,4 @@
 - [x] Verify both hardware arrivals, particle travel and desktop/mobile fades.
 - [ ] Recreate repository app screens in the website style with clickable preview controls.
 - [ ] Verify Connect, Account, Contribute, Chat, Code modes, Wallet and Leaderboard on desktop/mobile.
+- [ ] Add a side-by-side original repository UI and formatted app comparison.
