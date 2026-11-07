@@ -33,6 +33,6 @@ use the editor.
 - Use global semantic surface, texture, shadow and motion tokens for layered presentation; screen-edge overlays must never capture pointer events or cover navigation.
 - Keep decorative GPU artwork in a browser-safe SVG component with CSS motion and a static reduced-motion fallback, so it remains crisp without adding playback dependencies.
 - Deliver native-app restyling as stylesheet-only changes against original repository source, preserving HTML, JavaScript, Python, API contracts and permissions byte-for-byte to avoid replacing real behavior with simulations.
-- Keep the marketing website at /website; the root opens /compare with original and restyled source markup, explicitly visual-only because native behavior runs in the Mac app.
+- Keep marketing at /website; root and legacy comparison URLs open /app with final native source markup only, explicitly visual-only because native behavior runs in the Mac app.
 - Export into one repository with the native app at the root and marketing-only source under website/; exclude simulations and comparison routes, and preserve native executable source with CSS/texture-only changes so both products stay independent.
 - Keep native-restyle as the canonical CSS/texture-only laptop adaptation; mirror its stylesheet into the visual comparison without changing original markup or native behavior.
