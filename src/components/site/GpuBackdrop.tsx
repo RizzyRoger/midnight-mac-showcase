@@ -1,4 +1,5 @@
 import { useId } from "react";
+import quotePortrait from "@/assets/ram-quote-portrait.png";
 
 /** Decorative vector artwork: no product capability or live hardware claims. */
 export function GpuBackdrop() {
@@ -9,6 +10,14 @@ export function GpuBackdrop() {
   const ram = `${id}-ram`;
   return (
     <div className="gpu-backdrop" aria-hidden="true">
+      <figure className="gpu-quote">
+        <img src={quotePortrait} alt="" width={816} height={816} className="gpu-quote-portrait" />
+        <blockquote className="gpu-quote-text">
+          “A huge amount of RAM is sitting locked up in consumer PCs.”
+          <cite className="gpu-quote-cite">Sam Altman · paraphrased</cite>
+        </blockquote>
+      </figure>
+      <div className="gpu-loop">
       <svg viewBox="0 0 1000 600" fill="none" className="gpu-art" focusable="false">
         <defs>
           <clipPath id={left}><rect width="500" height="600" /></clipPath>
