@@ -238,7 +238,7 @@
 @keyframes spark-left-down { 0%, 40%, 100% { transform: translate(0, 0); opacity: 0; } 42% { transform: translate(-4px, 2px); opacity: .9; } 60%, 99% { transform: translate(-155px, 95px); opacity: 0; } }
 @keyframes spark-right-down { 0%, 40%, 100% { transform: translate(0, 0); opacity: 0; } 42% { transform: translate(4px, 2px); opacity: .9; } 60%, 99% { transform: translate(110px, 75px); opacity: 0; } }
 @keyframes gpu-blade { 0%, 26% { transform: translateY(-450px); opacity: 0; } 30% { opacity: .8; } 48% { transform: translateY(170px); opacity: .8; } 56%, 100% { transform: translateY(450px); opacity: 0; } }
-@media (max-width: 767px) { .gpu-art { width: 155%; right: -40%; opacity: .28; } }
+@media (max-width: 767px) { .gpu-art { width: 155%; right: -40%; opacity: .28; } .gpu-quote { right: 4%; left: 4%; max-width: none; gap: 12px; padding: 12px 14px; } .gpu-quote-portrait { width: 64px; height: 64px; } .gpu-quote-text { font-size: 12px; } }
 .part-panel { display: flex; flex-direction: column; transition: transform 180ms ease, box-shadow 180ms ease; }
 .part-panel > div { flex: 1; }
 .capability-tile { transition: background-color 180ms ease; }
@@ -261,7 +261,7 @@
 @media (max-width: 767px) { .screen-fade-top { top: 0; height: 130px; } .screen-fade-bottom { height: 68px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 
-@media (prefers-reduced-motion: reduce) { .hardware-ram { display: none; } .hardware-gpu { opacity: 1; transform: none; } .gpu-cut, .gpu-sparks, .gpu-blade { display: none; } }
+@media (prefers-reduced-motion: reduce) { .hardware-ram { display: none; } .hardware-gpu { opacity: 1; transform: none; } .gpu-cut, .gpu-sparks, .gpu-blade { display: none; } .gpu-quote { display: none; } .gpu-loop { opacity: 1 !important; } }
 
 /* App preview: the same graphite surfaces, with a denser desktop workspace. */
 :root { --preview-grid: color-mix(in oklch, var(--line) 45%, transparent); --preview-selected: color-mix(in oklch, var(--primary) 6%, var(--card)); --preview-dialog-shadow: 10px 12px 0 var(--shadow-ink), 0 24px 80px color-mix(in oklch, var(--shadow-ink) 85%, transparent); }
