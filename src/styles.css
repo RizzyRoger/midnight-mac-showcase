@@ -106,7 +106,7 @@
   --surface-hover: color-mix(in oklch, var(--primary) 7%, var(--card));
   --surface-highlight: oklch(0.4 0 0);
   --shadow-ink: oklch(0.06 0 0);
-  --texture: url("./assets/graphite-grain.png");
+  --texture: url("/graphite-grain.png");
   --shadow-layered: 3px 3px 0 var(--shadow-ink), 6px 6px 0 var(--line), 10px 12px 20px color-mix(in oklch, var(--shadow-ink) 65%, transparent);
   --shadow-raised: -4px 5px 0 var(--red-detail), -7px 9px 0 var(--shadow-ink), 0 16px 25px color-mix(in oklch, var(--shadow-ink) 75%, transparent);
   --chart-1: oklch(0.92 0.23 125);
