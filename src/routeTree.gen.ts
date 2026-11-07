@@ -10,16 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as NetworkRouteImport } from './routes/network'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as WebsiteRouteImport } from './routes/website'
+import { Route as AppAccountRouteImport } from './routes/app.account'
+import { Route as AppChatRouteImport } from './routes/app.chat'
+import { Route as AppCodeRouteImport } from './routes/app.code'
+import { Route as AppConnectRouteImport } from './routes/app.connect'
+import { Route as AppContributeRouteImport } from './routes/app.contribute'
+import { Route as AppLeaderboardRouteImport } from './routes/app.leaderboard'
+import { Route as AppWalletRouteImport } from './routes/app.wallet'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContributeRoute = ContributeRouteImport.update({
@@ -52,67 +65,151 @@ const WebsiteRoute = WebsiteRouteImport.update({
   path: '/website',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppAccountRoute = AppAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppChatRoute = AppChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCodeRoute = AppCodeRouteImport.update({
+  id: '/code',
+  path: '/code',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConnectRoute = AppConnectRouteImport.update({
+  id: '/connect',
+  path: '/connect',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppContributeRoute = AppContributeRouteImport.update({
+  id: '/contribute',
+  path: '/contribute',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLeaderboardRoute = AppLeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppWalletRoute = AppWalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
   '/contribute': typeof ContributeRoute
   '/demo': typeof DemoRoute
   '/download': typeof DownloadRoute
   '/network': typeof NetworkRoute
   '/pricing': typeof PricingRoute
   '/website': typeof WebsiteRoute
+  '/app/account': typeof AppAccountRoute
+  '/app/chat': typeof AppChatRoute
+  '/app/code': typeof AppCodeRoute
+  '/app/connect': typeof AppConnectRoute
+  '/app/contribute': typeof AppContributeRoute
+  '/app/leaderboard': typeof AppLeaderboardRoute
+  '/app/wallet': typeof AppWalletRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
   '/contribute': typeof ContributeRoute
   '/demo': typeof DemoRoute
   '/download': typeof DownloadRoute
   '/network': typeof NetworkRoute
   '/pricing': typeof PricingRoute
   '/website': typeof WebsiteRoute
+  '/app/account': typeof AppAccountRoute
+  '/app/chat': typeof AppChatRoute
+  '/app/code': typeof AppCodeRoute
+  '/app/connect': typeof AppConnectRoute
+  '/app/contribute': typeof AppContributeRoute
+  '/app/leaderboard': typeof AppLeaderboardRoute
+  '/app/wallet': typeof AppWalletRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
   '/contribute': typeof ContributeRoute
   '/demo': typeof DemoRoute
   '/download': typeof DownloadRoute
   '/network': typeof NetworkRoute
   '/pricing': typeof PricingRoute
   '/website': typeof WebsiteRoute
+  '/app/account': typeof AppAccountRoute
+  '/app/chat': typeof AppChatRoute
+  '/app/code': typeof AppCodeRoute
+  '/app/connect': typeof AppConnectRoute
+  '/app/contribute': typeof AppContributeRoute
+  '/app/leaderboard': typeof AppLeaderboardRoute
+  '/app/wallet': typeof AppWalletRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/app'
     | '/contribute'
     | '/demo'
     | '/download'
     | '/network'
     | '/pricing'
     | '/website'
+    | '/app/account'
+    | '/app/chat'
+    | '/app/code'
+    | '/app/connect'
+    | '/app/contribute'
+    | '/app/leaderboard'
+    | '/app/wallet'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app'
     | '/contribute'
     | '/demo'
     | '/download'
     | '/network'
     | '/pricing'
     | '/website'
+    | '/app/account'
+    | '/app/chat'
+    | '/app/code'
+    | '/app/connect'
+    | '/app/contribute'
+    | '/app/leaderboard'
+    | '/app/wallet'
   id:
     | '__root__'
     | '/'
+    | '/app'
     | '/contribute'
     | '/demo'
     | '/download'
     | '/network'
     | '/pricing'
     | '/website'
+    | '/app/account'
+    | '/app/chat'
+    | '/app/code'
+    | '/app/connect'
+    | '/app/contribute'
+    | '/app/leaderboard'
+    | '/app/wallet'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
   ContributeRoute: typeof ContributeRoute
   DemoRoute: typeof DemoRoute
   DownloadRoute: typeof DownloadRoute
@@ -128,6 +225,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contribute': {
@@ -172,11 +276,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WebsiteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/account': {
+      id: '/app/account'
+      path: '/account'
+      fullPath: '/app/account'
+      preLoaderRoute: typeof AppAccountRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/chat': {
+      id: '/app/chat'
+      path: '/chat'
+      fullPath: '/app/chat'
+      preLoaderRoute: typeof AppChatRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/code': {
+      id: '/app/code'
+      path: '/code'
+      fullPath: '/app/code'
+      preLoaderRoute: typeof AppCodeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/connect': {
+      id: '/app/connect'
+      path: '/connect'
+      fullPath: '/app/connect'
+      preLoaderRoute: typeof AppConnectRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/contribute': {
+      id: '/app/contribute'
+      path: '/contribute'
+      fullPath: '/app/contribute'
+      preLoaderRoute: typeof AppContributeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/leaderboard': {
+      id: '/app/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/app/leaderboard'
+      preLoaderRoute: typeof AppLeaderboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/wallet': {
+      id: '/app/wallet'
+      path: '/wallet'
+      fullPath: '/app/wallet'
+      preLoaderRoute: typeof AppWalletRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAccountRoute: typeof AppAccountRoute
+  AppChatRoute: typeof AppChatRoute
+  AppCodeRoute: typeof AppCodeRoute
+  AppConnectRoute: typeof AppConnectRoute
+  AppContributeRoute: typeof AppContributeRoute
+  AppLeaderboardRoute: typeof AppLeaderboardRoute
+  AppWalletRoute: typeof AppWalletRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAccountRoute: AppAccountRoute,
+  AppChatRoute: AppChatRoute,
+  AppCodeRoute: AppCodeRoute,
+  AppConnectRoute: AppConnectRoute,
+  AppContributeRoute: AppContributeRoute,
+  AppLeaderboardRoute: AppLeaderboardRoute,
+  AppWalletRoute: AppWalletRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
   ContributeRoute: ContributeRoute,
   DemoRoute: DemoRoute,
   DownloadRoute: DownloadRoute,
