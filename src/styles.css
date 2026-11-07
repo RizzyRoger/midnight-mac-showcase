@@ -196,7 +196,7 @@
 .site-nav-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 5px; }
 .home-hero { position: relative; isolation: isolate; overflow: hidden; }
 .gpu-backdrop { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.gpu-art { position: absolute; width: min(1200px, 110%); height: 100%; right: 7%; top: 0; stroke: var(--gpu-line); stroke-width: 1.6; stroke-linejoin: bevel; opacity: .45; }
+.gpu-art { position: absolute; width: min(1200px, 110%); height: 100%; right: 16%; top: 0; stroke: var(--gpu-line); stroke-width: 1.6; stroke-linejoin: bevel; opacity: .45; }
 .gpu-face, .gpu-side { fill: var(--gpu-fill); }
 .gpu-fin { stroke-width: .8; }
 .gpu-chip { fill: var(--background); }
