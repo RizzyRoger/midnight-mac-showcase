@@ -1,13 +1,4 @@
 // Sample data only — all numbers, names and prices are placeholders.
-export const tickerStats = [
-  "MACS ONLINE: 1,284",
-  "TOKENS SERVED TODAY: 48.2M",
-  "CREDITS EARNED BY CONTRIBUTORS: 912,400",
-  "SPLIT JOBS RUNNING: 37",
-  "AVG QUEUE WAIT: 4s",
-  "APPLE SILICON ONLY",
-];
-
 export const leaderboard = [
   { rank: 1, name: "m4max_unit", chip: "M4 Max · 128GB", jobs: 18420, credits: 92410 },
   { rank: 2, name: "studio_rack_02", chip: "M2 Ultra · 192GB", jobs: 16110, credits: 88030 },

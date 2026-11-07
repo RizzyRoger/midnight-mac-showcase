@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { tickerStats } from "@/lib/site-data";
 
 const nav = [
   { to: "/demo", label: "Demo" },
@@ -42,19 +41,6 @@ export function Header() {
   );
 }
 
-export function Ticker() {
-  const items = [...tickerStats, ...tickerStats];
-  return (
-    <div className="overflow-hidden border-y-2 border-foreground bg-primary py-2 text-primary-foreground">
-      <div className="marquee flex w-max gap-10">
-        {items.map((t, i) => (
-          <span key={i} className="label-mono font-bold">■ {t}</span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export function Footer() {
   return (
     <footer className="border-t-2 border-foreground">
@@ -64,7 +50,7 @@ export function Footer() {
             <span className="text-primary">/</span>compute
           </p>
           <p className="label-mono mt-4 text-muted-foreground">
-            Mac-first AI coding assistant · shared computing · Apple Silicon first
+            Mac-first AI chat & image analysis · shared computing · Apple Silicon first
           </p>
         </div>
         <div className="flex flex-col gap-2">

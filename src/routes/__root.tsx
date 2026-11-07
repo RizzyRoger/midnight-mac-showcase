@@ -128,10 +128,12 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Header />
-      <main>
+      <main className="site-main">
         <Outlet />
       </main>
       <Footer />
+      <div className="screen-fade screen-fade-top" aria-hidden="true" />
+      <div className="screen-fade screen-fade-bottom" aria-hidden="true" />
     </QueryClientProvider>
   );
 }
