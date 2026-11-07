@@ -12,6 +12,7 @@
 - [x] Verify the complete loop and static reduced-motion state.
 - [x] Keep incoming hardware intact, animate outward slicing particles, and restore the matching top fade.
 - [x] Verify both hardware arrivals, particle travel and desktop/mobile fades.
-- [ ] Recreate repository app screens in the website style with clickable preview controls.
-- [ ] Verify Connect, Account, Contribute, Chat, Code modes, Wallet and Leaderboard on desktop/mobile.
-- [ ] Add a side-by-side original repository UI and formatted app comparison.
+- [ ] Replace the rejected simulation with a styling-only adaptation of the actual repository app, retaining all original behavior.
+- [ ] Resolve where the original app runtime will run; native Mac processes and filesystem cannot run in the hosted website.
+- [ ] Verify original Connect, Account, Contribute, Chat, Code modes, Wallet and Leaderboard against the real app runtime.
+- [ ] Correct the side-by-side comparison to show the original and restyled actual app.
