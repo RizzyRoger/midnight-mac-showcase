@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
+import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as DownloadRouteImport } from './routes/download'
@@ -34,6 +35,11 @@ const IndexRoute = IndexRouteImport.update({
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContributeRoute = ContributeRouteImport.update({
@@ -110,6 +116,7 @@ const AppWalletRoute = AppWalletRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/compare': typeof CompareRoute
   '/contribute': typeof ContributeRoute
   '/demo': typeof DemoRoute
   '/download': typeof DownloadRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/contribute': typeof ContributeRoute
   '/demo': typeof DemoRoute
   '/download': typeof DownloadRoute
@@ -146,6 +154,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/compare': typeof CompareRoute
   '/contribute': typeof ContributeRoute
   '/demo': typeof DemoRoute
   '/download': typeof DownloadRoute
@@ -166,6 +175,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/compare'
     | '/contribute'
     | '/demo'
     | '/download'
@@ -183,6 +193,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/compare'
     | '/contribute'
     | '/demo'
     | '/download'
@@ -201,6 +212,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
+    | '/compare'
     | '/contribute'
     | '/demo'
     | '/download'
@@ -220,6 +232,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
+  CompareRoute: typeof CompareRoute
   ContributeRoute: typeof ContributeRoute
   DemoRoute: typeof DemoRoute
   DownloadRoute: typeof DownloadRoute
@@ -242,6 +255,13 @@ declare module '@tanstack/react-router' {
       path: '/app'
       fullPath: '/app'
       preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contribute': {
@@ -372,6 +392,7 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
+  CompareRoute: CompareRoute,
   ContributeRoute: ContributeRoute,
   DemoRoute: DemoRoute,
   DownloadRoute: DownloadRoute,
