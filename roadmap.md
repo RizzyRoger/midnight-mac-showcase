@@ -1,6 +1,6 @@
 # Website updates
 - [x] Remove the illustrative homepage chat window.
-- [ ] Create and populate separate GitHub repositories for the website and original restyled Mac app.
+- [ ] Create and populate separate public GitHub repositories for the website and original restyled Mac app.
 - [x] Add textured palette, layered surfaces, restrained hover motion and screen-edge fades.
 - [x] Add three related images and emphasize privacy choices.
 - [x] Remove invented ticker statistics and correct capability claims.
