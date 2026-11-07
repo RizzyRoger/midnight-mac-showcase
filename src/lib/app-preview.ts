@@ -1,7 +1,7 @@
 import { capabilities } from './capabilities';
 export type CodeMode = 'Plan' | 'Manual' | 'Auto';
 export const codeModes: CodeMode[] = ['Plan', 'Manual', 'Auto'];
-export const previewModels = ['Qwen 2.5 · 7B', 'Llama 3.2 · 3B', 'DeepSeek R1 · 8B'];
+export const previewModels: [string, ...string[]] = ['Qwen 2.5 · 7B', 'Llama 3.2 · 3B', 'DeepSeek R1 · 8B'];
 export const previewRuntime = { fileEditing: capabilities.fileEditing, commandExecution: capabilities.commandExecution, realPayments: false } as const;
 export function previewCodeAction(mode: CodeMode) {
   return mode === 'Plan' ? 'plan' : mode === 'Manual' ? 'approval' : 'checkpoint';
