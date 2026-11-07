@@ -11,9 +11,9 @@ const nav = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b-2 border-foreground bg-background">
+    <header className="site-header sticky top-0 z-40 border-b-2 border-foreground bg-background">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-        <Link to="/" className="headline text-2xl">
+        <Link to="/" activeOptions={{ exact: true }} className="site-nav-link headline text-2xl">
           <span className="text-primary">/</span>compute
         </Link>
         <nav className="hidden gap-6 md:flex">
@@ -21,20 +21,19 @@ export function Header() {
             <Link
               key={n.to}
               to={n.to}
-              className="label-mono hover:text-primary"
-              activeProps={{ className: "text-primary underline underline-offset-4" }}
+              className="site-nav-link label-mono hover:text-primary"
             >
               {n.label}
             </Link>
           ))}
         </nav>
         <Button asChild variant="brut" size="sm">
-          <Link to="/download">Download for Mac</Link>
+          <Link to="/download" className="site-nav-link">Download for Mac</Link>
         </Button>
       </div>
       <nav className="flex gap-4 overflow-x-auto border-t-2 border-foreground px-4 py-2 md:hidden">
         {nav.map((n) => (
-          <Link key={n.to} to={n.to} className="label-mono">{n.label}</Link>
+            <Link key={n.to} to={n.to} className="site-nav-link label-mono">{n.label}</Link>
         ))}
       </nav>
     </header>
