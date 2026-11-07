@@ -31,9 +31,9 @@ export function GpuBackdrop() {
         <path d="M500 82V505" className="gpu-cut" />
         <g className="gpu-sparks">
           {Array.from({ length: 26 }, (_, i) => {
-            const x = 500 + (i % 2 ? 1 : -1) * (12 + (i * 31) % 120);
+            const x = 500;
             const y = 135 + (i * 47) % 325;
-            return <path key={i} d={`M${x} ${y}l${i % 2 ? 5 : -5} ${i % 3 ? 5 : -5}`} />;
+            return <path key={i} className={`gpu-spark gpu-spark-${i % 4}`} d={`M${x} ${y}l${i % 2 ? 5 : -5} ${i % 3 ? 5 : -5}`} />;
           })}
         </g>
         <g className="gpu-blade">
