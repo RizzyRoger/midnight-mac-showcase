@@ -15,6 +15,7 @@ import { Route as DemoRouteImport } from './routes/demo'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as NetworkRouteImport } from './routes/network'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as WebsiteRouteImport } from './routes/website'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WebsiteRoute = WebsiteRouteImport.update({
+  id: '/website',
+  path: '/website',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/download': typeof DownloadRoute
   '/network': typeof NetworkRoute
   '/pricing': typeof PricingRoute
+  '/website': typeof WebsiteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/download': typeof DownloadRoute
   '/network': typeof NetworkRoute
   '/pricing': typeof PricingRoute
+  '/website': typeof WebsiteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,13 +79,27 @@ export interface FileRoutesById {
   '/download': typeof DownloadRoute
   '/network': typeof NetworkRoute
   '/pricing': typeof PricingRoute
+  '/website': typeof WebsiteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/contribute' | '/demo' | '/download' | '/network' | '/pricing'
+    | '/'
+    | '/contribute'
+    | '/demo'
+    | '/download'
+    | '/network'
+    | '/pricing'
+    | '/website'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contribute' | '/demo' | '/download' | '/network' | '/pricing'
+  to:
+    | '/'
+    | '/contribute'
+    | '/demo'
+    | '/download'
+    | '/network'
+    | '/pricing'
+    | '/website'
   id:
     | '__root__'
     | '/'
@@ -86,6 +108,7 @@ export interface FileRouteTypes {
     | '/download'
     | '/network'
     | '/pricing'
+    | '/website'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,6 +118,7 @@ export interface RootRouteChildren {
   DownloadRoute: typeof DownloadRoute
   NetworkRoute: typeof NetworkRoute
   PricingRoute: typeof PricingRoute
+  WebsiteRoute: typeof WebsiteRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/website': {
+      id: '/website'
+      path: '/website'
+      fullPath: '/website'
+      preLoaderRoute: typeof WebsiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -151,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   DownloadRoute: DownloadRoute,
   NetworkRoute: NetworkRoute,
   PricingRoute: PricingRoute,
+  WebsiteRoute: WebsiteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
