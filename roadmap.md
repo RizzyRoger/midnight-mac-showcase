@@ -10,3 +10,10 @@
 - [x] Restore the white navigation divider.
 - [x] Redraw reference-style GPU and RAM, alternating slices and leftward exits forever.
 - [x] Verify the complete loop and static reduced-motion state.
+- [x] Keep incoming hardware intact, animate outward slicing particles, and restore the matching top fade.
+- [x] Verify both hardware arrivals, particle travel and desktop/mobile fades.
+- [x] Replace the rejected simulation with a styling-only adaptation of the actual repository app, retaining original HTML, JavaScript and Python unchanged.
+- [x] Deliver the original Mac app source with the restyled stylesheet and installation instructions.
+- [x] Run 247 original app tests and inspect all seven original UI sections.
+- [ ] Verify native Mac launch and live Connect, Account, Contribute, Chat, Code, Wallet and Leaderboard; blocked by unavailable Mac hardware and live inference pool.
+- [x] Correct the side-by-side comparison to show the original and restyled actual app markup, explicitly visual-only.

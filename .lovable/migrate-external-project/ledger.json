@@ -1,0 +1,10 @@
+{
+  "source": "https://github.com/RizzyRoger/SlashCompute-V2",
+  "scope": "Original native Mac app, stylesheet-only restyle; hosted comparison is visual-only",
+  "capabilities": [
+    {"capability":"App screens and controls","source":"Original repository HTML and JavaScript","outcome":"Preserved unchanged; only stylesheet replaced and texture added","status":"verified","next_action":"All seven sections visually inspected; 247 original app tests passed"},
+    {"capability":"Native inference, local processes and filesystem","source":"Original Python app runtime","outcome":"Preserved byte-for-byte in downloadable source","status":"verification_pending","next_action":"Run on a Mac with a real inference pool; sandbox has neither"},
+    {"capability":"Accounts, wallet and network data","source":"Original repository services","outcome":"Preserved byte-for-byte, including test-only purchase behavior","status":"verification_pending","next_action":"Verify real sign-in, contribution and transactions against a live coordinator"},
+    {"capability":"Side-by-side comparison","source":"Original HTML and original/restyled CSS","outcome":"Both panes show original controls, no fake operations","status":"verified","next_action":"Visual-only; use the downloadable source to run native functions"}
+  ]
+}

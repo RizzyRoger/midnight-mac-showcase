@@ -1,0 +1,2 @@
+import { createFileRoute, redirect } from '@tanstack/react-router';
+export const Route=createFileRoute('/app/')({beforeLoad:()=>{throw redirect({to:'/app/connect'})},head:()=>({meta:[{title:'SlashCompute workspace'},{name:'description',content:'Open the SlashCompute interactive app workspace.'},{property:'og:title',content:'SlashCompute workspace'},{property:'og:description',content:'Connect to the SlashCompute app preview.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]})});

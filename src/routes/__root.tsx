@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -123,17 +124,19 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const isApp = pathname === "/" || pathname === "/app" || pathname === "/compare" || pathname.startsWith("/app/");
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Header />
-      <main className="site-main">
-        <Outlet />
-      </main>
-      <Footer />
-      <div className="screen-fade screen-fade-top" aria-hidden="true" />
-      <div className="screen-fade screen-fade-bottom" aria-hidden="true" />
+      {isApp ? <Outlet /> : <>
+        <Header />
+        <main className="site-main"><Outlet /></main>
+        <Footer />
+        <div className="screen-fade screen-fade-top" aria-hidden="true" />
+        <div className="screen-fade screen-fade-bottom" aria-hidden="true" />
+      </>}
     </QueryClientProvider>
   );
 }
