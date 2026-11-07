@@ -22,7 +22,7 @@ function Pricing() {
   const [bought, setBought] = useState(false);
   return (
     <>
-      <PageHero tag="/pricing" title={<>Pay for tokens. <span className="text-primary">Not for typing.</span></>} sub="Credits are spent on hosted model usage only. Local edits and local test runs are never billed." />
+      <PageHero tag="/pricing" title={<>Pay for tokens. <span className="text-primary">Not for typing.</span></>} sub="Proposed credits cover hosted chat and image-analysis usage. File editing and test execution are not available in the current app." />
       <section className="mx-auto max-w-7xl px-4 py-20">
         <SectionTitle n="01" title="Rates per 1M tokens" kicker="placeholder prices" />
         <div className="overflow-x-auto border-2 border-foreground">

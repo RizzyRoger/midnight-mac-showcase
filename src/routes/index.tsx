@@ -1,14 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { MacWindow, SectionTitle, Ticker } from "@/components/site/SiteChrome";
+import { MacWindow, SectionTitle } from "@/components/site/SiteChrome";
+import { Eye, LockKeyhole, ShieldCheck, MessageSquare, Image, CirclePause, FolderLock, Terminal, Undo2 } from "lucide-react";
+import { capabilityItems } from "@/lib/capabilities";
+import useImage from "@/assets/use-mac.jpg";
+import contributeImage from "@/assets/contribute-macs.jpg";
+import fundImage from "@/assets/fund-credits.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "SlashCompute — Code with a supercomputer you don't own" },
-      { name: "description", content: "A Mac-first AI coding agent that runs models on one Mac or splits them across many. Pay with credits or earn them by contributing." },
+      { name: "description", content: "Mac-first AI chat and image analysis on shared Apple Silicon compute. File editing is not yet available." },
       { property: "og:title", content: "SlashCompute — Code with a supercomputer you don't own" },
-      { property: "og:description", content: "Mac-first AI coding agent on a cooperative network of Apple Silicon Macs." },
+      { property: "og:description", content: "Basic chat and image analysis for Mac. File editing is not yet available." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -17,21 +22,17 @@ export const Route = createFileRoute("/")({
 });
 
 const parts = [
-  { k: "/USE", t: "Ask an AI agent to work on your local code project.", n: "01" },
-  { k: "/CONTRIBUTE", t: "Lend spare Mac power to run models for others. Earn credits.", n: "02" },
-  { k: "/FUND", t: "Buy credits, or optionally earn them with idle mining.", n: "03" },
-];
-const caps = [
-  "Read & search files", "Create & edit files", "Show diffs", "Run approved commands",
-  "Build & run tests", "Read errors, iterate", "Plan big tasks", "Prepare Git commits",
+  { k: "/USE", t: "Talk with AI and explore images, right from your Mac.", n: "01", image: useImage, alt: "Mac laptop with a chat and image conversation" },
+  { k: "/CONTRIBUTE", t: "Lend spare Mac power to run models for others. Earn credits.", n: "02", image: contributeImage, alt: "Three connected compact Mac computers" },
+  { k: "/FUND", t: "Buy credits, or optionally earn them with idle mining.", n: "03", image: fundImage, alt: "Machined computing tokens beside a desktop computer" },
 ];
 const guards = [
-  ["Folder boundaries", "The agent only sees the folder you pick."],
-  ["Command approval", "Nothing runs in your terminal without a yes."],
-  ["Cancel anytime", "One key stops the model and the job."],
-  ["Spending limits", "Set a cap before every session."],
-  ["Visible diffs", "Every change shown before it lands."],
-  ["Checkpoints", "Roll files back to any earlier step."],
+  { title: "Your conversation", text: "Basic chat is available now.", icon: MessageSquare, status: "Available" },
+  { title: "Images, understood", text: "Image analysis is available in the Mac app.", icon: Eye, status: "Available" },
+  { title: "No file edits yet", text: "The current app does not modify your project files.", icon: FolderLock, status: "Current boundary" },
+  { title: "Command approval", text: "An explicit approval step is planned for future terminal tools.", icon: Terminal, status: "Planned" },
+  { title: "Spending limits", text: "Session caps are part of the proposed network experience.", icon: CirclePause, status: "Planned" },
+  { title: "Checkpoints", text: "Reversible changes are planned alongside future editing tools.", icon: Undo2, status: "Planned" },
 ];
 
 function Home() {
@@ -42,42 +43,40 @@ function Home() {
           <div>
             <span className="label-mono bg-primary px-2 py-1 text-primary-foreground">macOS · Apple Silicon</span>
             <h1 className="headline mt-6 text-5xl md:text-7xl">
-              Code with a supercomputer you <span className="text-primary">don't own.</span>
+              <span className="text-primary">/compute</span><br />AI on your Mac.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-              SlashCompute is an AI coding agent for your Mac. Big models run on a shared network of
-              Macs — one machine or split across many.
+              Chat with AI and analyze images on your Mac. Shared Apple Silicon compute is the vision.
+              File editing isn’t available yet.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button asChild variant="brut" size="lg"><Link to="/download">Download for Mac</Link></Button>
               <Button asChild variant="brutOutline" size="lg"><Link to="/demo">Try the demo →</Link></Button>
             </div>
           </div>
-          <MacWindow title="~/projects/acme-app — /compute">
+          <MacWindow title="chat & image analysis — /compute">
             <div className="space-y-2 p-5 font-mono text-sm">
-              <p><span className="text-primary">you ›</span> Find the login bug, fix it, and run the tests.</p>
-              <p className="text-muted-foreground">▸ read src/auth/login.ts</p>
-              <p className="text-muted-foreground">▸ read src/auth/session.ts</p>
-              <p className="text-muted-foreground">▸ plan: token expiry compared in seconds vs ms</p>
-              <p className="text-destructive">- if (exp &lt; Date.now()) </p>
-              <p className="text-primary">+ if (exp * 1000 &lt; Date.now())</p>
-              <p className="text-accent">⚠ approve: npm test</p>
-              <p>✓ 14 passed · 0 failed</p>
-              <p className="label-mono text-muted-foreground">split ×3 macs · 2.4 credits<span className="blink">█</span></p>
+              <p className="label-mono text-muted-foreground">Illustrative conversation</p>
+              <p className="flex items-center gap-2 text-primary"><Image size={18} /> image attached</p>
+              <p><span className="text-primary">you ›</span> What stands out in this image?</p>
+              <p className="mt-4 border-l-2 border-primary pl-4">A silver laptop sits on a textured desk. The screen shows a conversation with an image attached.</p>
+              <p className="label-mono pt-5 text-muted-foreground">Chat · image analysis<span className="blink">█</span></p>
             </div>
           </MacWindow>
         </div>
       </section>
-      <Ticker />
 
       <section className="mx-auto max-w-7xl px-4 py-20">
         <SectionTitle n="01" title="Three parts. One network." />
         <div className="grid gap-6 md:grid-cols-3">
           {parts.map((p) => (
-            <div key={p.k} className="brut-box brut-shadow p-6">
+            <div key={p.k} className="brut-box brut-shadow part-panel overflow-hidden">
+              <div className="p-6">
               <span className="label-mono text-muted-foreground">{p.n}</span>
               <h3 className="headline mt-4 text-4xl text-primary">{p.k}</h3>
               <p className="mt-4">{p.t}</p>
+              </div>
+              <img src={p.image} alt={p.alt} width={1024} height={640} loading="lazy" className="aspect-[8/5] w-full border-t-2 border-line object-cover" />
             </div>
           ))}
         </div>
@@ -85,12 +84,13 @@ function Home() {
 
       <section className="border-y-2 border-foreground bg-card">
         <div className="mx-auto max-w-7xl px-4 py-20">
-          <SectionTitle n="02" title="A workspace, not a chatbot." />
-          <div className="grid grid-cols-2 border-l-2 border-t-2 border-foreground md:grid-cols-4">
-            {caps.map((c, i) => (
-              <div key={c} className="border-b-2 border-r-2 border-foreground p-6 hover:bg-primary hover:text-primary-foreground">
+          <SectionTitle n="02" title="What’s available today." />
+          <div className="grid grid-cols-1 border-l-2 border-t-2 border-line sm:grid-cols-2 md:grid-cols-4">
+            {capabilityItems.map((c, i) => (
+              <div key={c.title} className="capability-tile border-b-2 border-r-2 border-line p-6">
                 <span className="label-mono">{String(i + 1).padStart(2, "0")}</span>
-                <p className="headline mt-6 text-xl">{c}</p>
+                <p className="headline mt-6 text-xl">{c.title}</p>
+                <p className={`label-mono mt-4 ${c.available ? "text-primary" : "text-muted-foreground"}`}>{c.available ? "Available" : "Not yet available"}</p>
               </div>
             ))}
           </div>
@@ -98,12 +98,12 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-20">
-        <SectionTitle n="03" title="Local tools. Remote brains." />
+          <SectionTitle n="03" title="Your Mac. Your boundaries." kicker="network design" />
         <div className="grid items-center gap-6 md:grid-cols-[1fr_auto_1fr]">
           <div className="brut-box p-6">
             <span className="label-mono text-primary">Your Mac</span>
             <ul className="mt-4 space-y-2 font-mono text-sm">
-              <li>■ Project files</li><li>■ Agent tools</li><li>■ Permissions & approvals</li>
+              <li>■ Chat & image input</li><li>■ No file editing yet</li><li>■ Your selected content</li>
             </ul>
           </div>
           <div className="headline text-center text-5xl text-primary">⇄</div>
@@ -115,9 +115,15 @@ function Home() {
           </div>
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {[["Local-only", "Nothing leaves your Mac."], ["Trusted pool", "Only Macs you approve."], ["Public network", "Prompt text goes to network hosts."]].map(([a, b]) => (
-            <div key={a} className="border-2 border-dashed border-foreground p-4">
-              <p className="label-mono text-accent">{a}</p><p className="mt-2 text-sm text-muted-foreground">{b}</p>
+          {[
+            { title: "Local-only", text: "Designed to keep inference on your own Mac, with no network host involved.", icon: LockKeyhole, note: "Keep it on your machine" },
+            { title: "Trusted pool", text: "Designed for a pool of Macs you explicitly choose, rather than unknown hosts.", icon: ShieldCheck, note: "Choose who you trust" },
+            { title: "Public network", text: "Network hosts receive the content sent for inference. Keep sensitive content local.", icon: Eye, note: "Know what you share" },
+          ].map((p) => (
+            <div key={p.title} className="privacy-panel p-6">
+              <p.icon size={26} className="mb-5 text-primary" strokeWidth={1.5} />
+              <p className="headline text-2xl">{p.title}</p><p className="mt-3 text-sm leading-6 text-muted-foreground">{p.text}</p>
+              <p className="label-mono mt-5 border-t border-line pt-4 text-primary">{p.note}</p>
             </div>
           ))}
         </div>
@@ -127,10 +133,11 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 py-20">
           <SectionTitle n="04" title="You stay in control." />
           <div className="grid gap-6 md:grid-cols-3">
-            {guards.map(([a, b]) => (
-              <div key={a} className="border-l-4 border-primary pl-4">
-                <h3 className="headline text-2xl">{a}</h3>
-                <p className="mt-2 text-muted-foreground">{b}</p>
+            {guards.map((g) => (
+              <div key={g.title} className="mechanical-panel p-6">
+                <div className="mb-5 flex items-center justify-between gap-3"><g.icon size={24} strokeWidth={1.5} className="text-primary" /><span className="label-mono text-muted-foreground">{g.status}</span></div>
+                <h3 className="headline text-2xl">{g.title}</h3>
+                <p className="mt-3 leading-6 text-muted-foreground">{g.text}</p>
               </div>
             ))}
           </div>

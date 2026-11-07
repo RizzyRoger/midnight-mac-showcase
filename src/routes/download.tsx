@@ -8,7 +8,7 @@ export const Route = createFileRoute("/download")({
       { title: "Download SlashCompute for Mac" },
       { name: "description", content: "Get the SlashCompute Mac app for Apple Silicon, or join the waitlist for early access." },
       { property: "og:title", content: "Download SlashCompute for Mac" },
-      { property: "og:description", content: "The Mac-first AI coding agent. Apple Silicon, macOS 14+." },
+      { property: "og:description", content: "Mac-first AI chat and image analysis. Apple Silicon, macOS 14+." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
