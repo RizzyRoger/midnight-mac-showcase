@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>/compute</title>
+
+
+<style>/* Layout only. Restyle freely. */
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+section {
+  margin: 2rem 0;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+form h3 {
+  width: 100%;
+  margin: 0;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+#chat-form label:first-child {
+  flex: 1 1 100%;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+pre {
+  white-space: pre-wrap;
+  max-height: 20rem;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.25rem 0.5rem;
+}
+
+#chat-log li span {
+  white-space: pre-wrap;
+}
+
+/* Code tabs */
+
+#code-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+#code-tabs [aria-selected="true"] {
+  font-weight: bold;
+}
+
+#code-mode label {
+  flex-direction: row;
+  align-items: center;
+}
+
+#code-log {
+  max-height: 36rem;
+  overflow: auto;
+}
+
+#code-log li {
+  margin: 0.4rem 0;
+}
+
+#code-log li span,
+#code-log li em {
+  white-space: pre-wrap;
+}
+
+#code-form label:first-child {
+  flex: 1 1 100%;
+}
+
+#code-approval,
+#code-plan {
+  border: 2px solid currentColor;
+  padding: 0 0.75rem;
+}
+
+.code-diff span {
+  display: block;
+}
+
+.diff-add {
+  background: #e6ffec;
+}
+
+.diff-del {
+  background: #ffebe9;
+}
+
+.diff-hunk,
+.diff-file {
+  color: #57606a;
+}
+
+[hidden] {
+  display: none !important;
+}
+</style></head>
+<body>
+<header>
+<h1>/compute</h1>
+<p id="signin-state">Not signed in</p>
+<nav>
+<a href="#connect">Connect</a>
+<a href="#account">Account</a>
+<a href="#contribute">Contribute</a>
+<a href="#chat">Chat</a>
+<a href="#code">Code</a>
+<a href="#wallet">Wallet</a>
+<a href="#leaderboard">Leaderboard</a>
+</nav>
+<p aria-live="polite" id="message" role="status"></p>
+</header>
+<main>
+<!-- Connect -->
+<section id="connect">
+<h2>Connect</h2>
+<p>Main server: <span id="server-state">not connected</span></p>
+<p><button id="find-lan" type="button">Find on this network</button></p>
+<form id="server-url-form">
+<label>Server address <input name="url" placeholder="192.168.1.10:8765"/></label>
+<button type="submit">Connect</button>
+</form>
+<details>
+<summary>Start the main server on this computer (admin only)</summary>
+<form id="server-start-form">
+<label>Admin email <input autocomplete="username" name="email" required="" type="email"/></label>
+<label>Password <input autocomplete="current-password" name="password" required="" type="password"/></label>
+<button type="submit">Start main server</button>
+</form>
+<p id="server-local-state"></p>
+<button id="server-stop" type="button">Stop main server</button>
+</details>
+</section>
+<!-- Account -->
+<section id="account">
+<h2>Account</h2>
+<div id="signed-out">
+<form id="login-form">
+<h3>Sign in</h3>
+<label>Email <input autocomplete="username" name="email" required="" type="email"/></label>
+<label>Password <input autocomplete="current-password" name="password" required="" type="password"/></label>
+<button type="submit">Sign in</button>
+</form>
+<form id="register-form">
+<h3>Register</h3>
+<label>Display name <input name="name" required=""/></label>
+<label>Email <input autocomplete="username" name="email" required="" type="email"/></label>
+<label>Password <input autocomplete="new-password" name="password" required="" type="password"/></label>
+<button type="submit">Register</button>
+</form>
+</div>
+<div hidden="" id="signed-in">
+<p>Signed in as <strong id="user-name"></strong> (<span id="user-email"></span>)</p>
+<form id="name-form">
+<label>Display name <input name="name" required=""/></label>
+<button type="submit">Save</button>
+</form>
+<p><button id="logout" type="button">Sign out</button></p>
+<h3>Terms (DRAFT)</h3>
+<p id="terms-state"></p>
+<details>
+<summary>Read the terms</summary>
+<pre id="terms-text"></pre>
+</details>
+<button id="terms-accept" type="button">Accept terms</button>
+</div>
+</section>
+<!-- Contribute -->
+<section id="contribute">
+<h2>Contribute</h2>
+<form id="memory-form">
+<label>Memory lent to the pool
+          <input max="100" min="1" name="memory_percent" step="1" type="range"/>
+<output id="memory-value"></output>%
+        </label>
+</form>
+<h3>Model folders</h3>
+<ul id="models-dirs"></ul>
+<form id="models-dir-form">
+<label>Folder path <input name="dir" placeholder="/Users/me/models" required=""/></label>
+<button type="submit">Add folder</button>
+</form>
+<p>
+<button id="node-start" type="button">Start contributing</button>
+<button id="node-stop" type="button">Stop contributing</button>
+</p>
+<p>Node: <span id="node-state">stopped</span></p>
+<p>Earning: <span id="earn-rate">0</span>/s. Total earned: <span id="earn-total">0</span></p>
+<ul id="my-nodes"></ul>
+</section>
+<!-- Chat -->
+<section id="chat">
+<h2>Chat</h2>
+<form id="session-form">
+<label>Model <select id="chat-model" name="model"></select></label>
+<label>Session budget (PFLOPs) <input min="0" name="pflops" step="any" type="number" value="1"/></label>
+<button type="submit">New session</button>
+<button id="models-refresh" type="button">Refresh models</button>
+</form>
+<p id="session-state">No session (replies are charged to your wallet without a cap).</p>
+<ol id="chat-log"></ol>
+<div hidden="" id="queue-state">
+<p>Waiting in line: position <span id="queue-position"></span>, about <span id="queue-eta"></span> s.</p>
+<button id="queue-cancel" type="button">Cancel</button>
+</div>
+<form id="chat-form">
+<label>Message <textarea name="prompt" rows="3"></textarea></label>
+<label>Attach <input id="attach-input" multiple="" type="file"/></label>
+<ul id="attachments"></ul>
+<button id="chat-send" type="submit">Send</button>
+<button hidden="" id="chat-stop" type="button">Stop</button>
+</form>
+<dialog id="attach-notice">
+<form method="dialog">
+<p>Files you attach are sent to other people's computers in the pool to answer your message.</p>
+<button value="cancel">Cancel</button>
+<button value="ok">Send anyway</button>
+</form>
+</dialog>
+</section>
+<!-- Code -->
+<section id="code">
+<h2>Code</h2>
+<p>A pool model reads and edits files in a folder you choose. What it reads, and the output of
+        commands it runs, is sent to other people's computers in the pool.</p>
+<div aria-label="Code tabs" id="code-tabs" role="tablist"></div>
+<details id="code-new" open="">
+<summary>New tab</summary>
+<form id="code-new-form">
+<label>Project folder <input name="root" placeholder="/Users/me/project" required=""/></label>
+<label>Model <select id="code-model" name="model"></select></label>
+<label>Mode
+            <select name="mode">
+<option value="plan">Plan</option>
+<option value="manual">Manual</option>
+<option value="auto">Auto</option>
+</select>
+</label>
+<label>Budget (PFLOPs, 0 = no cap) <input min="0" name="budget_pflops" step="any" type="number" value="0"/></label>
+<button type="submit">Open tab</button>
+</form>
+</details>
+<div hidden="" id="code-panel" role="tabpanel">
+<p><strong id="code-title"></strong> in <code id="code-root"></code></p>
+<fieldset id="code-mode">
+<legend>Permission mode</legend>
+<label><input name="code-mode" type="radio" value="plan"/> Plan: explores read-only, then proposes a plan for you to approve</label>
+<label><input name="code-mode" type="radio" value="manual"/> Manual: asks before every file change and every command</label>
+<label><input name="code-mode" type="radio" value="auto"/> Auto: edits files and runs read-only commands itself; asks before other commands (unless allowed below), deletions and powerful commands</label>
+</fieldset>
+<label><input id="code-run-commands" type="checkbox"/> Let Auto also run programs and scripts without asking. Only if you trust the pool: the model's replies come from other people's computers.</label>
+<form id="code-settings-form">
+<label>Model <select id="code-tab-model" name="model"></select></label>
+<label>Budget (PFLOPs, 0 = no cap) <input min="0" name="budget_pflops" step="any" type="number"/></label>
+<button type="submit">Update</button>
+</form>
+<p aria-live="polite" id="code-status" role="status"></p>
+<details hidden="" id="code-checkpoints">
+<summary>File checkpoints</summary>
+<p><small>Undo puts the files the assistant edited back the way they were before that message,
+            along with every change after it. Changes made by commands aren't tracked.</small></p>
+<ol id="code-checkpoint-list"></ol>
+</details>
+<ol id="code-log"></ol>
+<div hidden="" id="code-approval">
+<h3>Approval needed</h3>
+<p id="code-approval-what"></p>
+<p><small id="code-approval-why"></small></p>
+<pre class="code-diff" id="code-approval-diff"></pre>
+<form id="code-approval-form">
+<label>Note for the assistant (optional) <input name="note"/></label>
+<button type="submit" value="approve">Approve</button>
+<button type="submit" value="reject">Reject</button>
+</form>
+</div>
+<div hidden="" id="code-plan">
+<h3>Proposed plan</h3>
+<pre id="code-plan-text"></pre>
+<form id="code-plan-form">
+<label>Note (optional) <input name="note"/></label>
+<button type="submit" value="auto">Approve, run in Auto</button>
+<button type="submit" value="manual">Approve, review each step (Manual)</button>
+<button type="submit" value="revise">Keep planning</button>
+</form>
+</div>
+<form id="code-form">
+<label>Message <textarea name="text" placeholder="Describe the change you want (Cmd/Ctrl+Enter sends)" rows="3"></textarea></label>
+<button id="code-send" type="submit">Send</button>
+<button hidden="" id="code-stop" type="button">Stop</button>
+<button id="code-close" type="button">Close tab</button>
+</form>
+</div>
+<dialog id="code-notice">
+<form method="dialog">
+<p>Files the assistant reads, and the output of commands it runs, are sent to other people's
+            computers in the pool. Don't open folders with secrets you can't share.</p>
+<button value="cancel">Cancel</button>
+<button value="ok">Open tab</button>
+</form>
+</dialog>
+</section>
+<!-- Wallet -->
+<section id="wallet">
+<h2>Wallet</h2>
+<p>Balance: <strong id="wallet-balance">-</strong></p>
+<p>Earned: <span id="wallet-earned">-</span>. Spent: <span id="wallet-spent">-</span>. Reserved: <span id="wallet-reserved">-</span></p>
+<form id="buy-form">
+<label>Buy PFLOPs (TEST MODE, no real payment) <input min="0" name="pflops" required="" step="any" type="number"/></label>
+<button type="submit">Buy (test)</button>
+</form>
+<p id="receipt"></p>
+<button id="wallet-refresh" type="button">Refresh</button>
+<table>
+<thead><tr><th>When</th><th>Kind</th><th>FLOPs</th><th>Note</th></tr></thead>
+<tbody id="transactions"></tbody>
+</table>
+</section>
+<!-- Leaderboard -->
+<section id="leaderboard">
+<h2>Leaderboard</h2>
+<fieldset id="board-window">
+<legend>Window</legend>
+<label><input checked="" name="window" type="radio" value="all"/> All time</label>
+<label><input name="window" type="radio" value="week"/> This week</label>
+</fieldset>
+<table>
+<thead><tr><th>Rank</th><th>Name</th><th>FLOPs earned</th></tr></thead>
+<tbody id="board"></tbody>
+</table>
+</section>
+</main>
+</body>
+</html>

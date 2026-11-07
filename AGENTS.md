@@ -32,3 +32,5 @@ use the editor.
 - Keep current capability availability in a shared browser-safe module, so home content and previews cannot disagree about supported tools.
 - Use global semantic surface, texture, shadow and motion tokens for layered presentation; screen-edge overlays must never capture pointer events or cover navigation.
 - Keep decorative GPU artwork in a browser-safe SVG component with CSS motion and a static reduced-motion fallback, so it remains crisp without adding playback dependencies.
+- Keep app-preview screens under the shared /app layout with session-scoped React state; simulate native operations explicitly because a browser preview must not claim OS access or live network activity.
+- Keep the marketing website at /website and open the app at the root; the app layout excludes marketing chrome to preserve an actual workspace experience.

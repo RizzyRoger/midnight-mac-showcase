@@ -1,0 +1,9 @@
+{
+  "source": "https://github.com/RizzyRoger/SlashCompute-V2",
+  "scope": "Interactive browser preview, not native-runtime migration",
+  "capabilities": [
+    {"capability":"App screens and controls","source":"Python desktop app","outcome":"Recreate in browser using existing visual style","status":"in_progress","next_action":"Implement and verify all requested screens"},
+    {"capability":"Native inference, local processes and filesystem","source":"Python app runtime","outcome":"Preview-only simulation; no native execution","status":"out_of_scope","next_action":"Native Mac app required for real hardware and files"},
+    {"capability":"Accounts, wallet and network data","source":"Repository services","outcome":"Clearly labeled temporary preview state, no real accounts or money","status":"out_of_scope","next_action":"Connect live services only if separately requested"}
+  ]
+}
