@@ -25,7 +25,8 @@ export const macDownload: Download = {
     "Open compute-mac.dmg and drag compute into Applications.",
     "The build isn't code-signed yet. The first time, right-click compute in Applications, choose Open, then click Open.",
     "If macOS only offers Move to Trash or Done: System Settings → Privacy & Security → Open Anyway, then confirm.",
-    "Allow local network access and incoming connections when asked, so compute can find and join a pool.",
+    "When macOS asks whether python3.13 may find devices on your local network, click Allow. compute runs on its own copy of Python, so that's the name macOS shows, also under System Settings → Privacy & Security → Local Network.",
+    "Allow incoming connections when asked, so pool members can connect to each other.",
   ],
 };
 
