@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
 const nav = [
+  { to: "/website", label: "Home" },
   { to: "/demo", label: "Demo" },
   { to: "/network", label: "Network" },
   { to: "/contribute", label: "Contribute" },
