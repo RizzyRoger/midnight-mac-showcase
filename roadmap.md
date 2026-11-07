@@ -10,3 +10,5 @@
 - [x] Restore the white navigation divider.
 - [x] Redraw reference-style GPU and RAM, alternating slices and leftward exits forever.
 - [x] Verify the complete loop and static reduced-motion state.
+- [ ] Keep incoming hardware intact, animate outward slicing particles, and restore the matching top fade.
+- [ ] Verify both hardware arrivals, particle travel and desktop/mobile fades.
