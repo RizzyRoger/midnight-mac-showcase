@@ -1,10 +1,11 @@
 # Website updates
+- [ ] Upload the website and native app together to one public GitHub repository, preserving native app source and keeping website files in a separate folder.
 - [x] Make the native app laptop-focused with presentation-only changes.
 - [x] Make the larger Sam portrait and concept text recur within the hardware animation loop; do not attribute an unverified quote.
-- [ ] Update both public repositories with completed changes; blocked by declined asset-upload approval and an unavailable renewed approval card.
+- [x] Supersede the two-repository upload with the requested combined public repository.
 - [x] Remove the illustrative homepage chat window.
 - [x] Create separate public SlashCompute-Website and SlashCompute-App repositories; app is a fork retaining complete original source.
-- [ ] Populate the website source and apply the restyled native CSS to GitHub; blocked by asset-upload approval.
+- [ ] Populate website source and apply native restyle in the combined public repository.
 - [x] Add textured palette, layered surfaces, restrained hover motion and screen-edge fades.
 - [x] Add three related images and emphasize privacy choices.
 - [x] Remove invented ticker statistics and correct capability claims.
