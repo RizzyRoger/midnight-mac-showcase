@@ -1,3 +1,2 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { AppShell } from '@/components/app/AppShell';
-export const Route=createFileRoute('/app')({component:AppShell});
+import { createFileRoute, redirect, Outlet } from '@tanstack/react-router';
+export const Route=createFileRoute('/app')({beforeLoad:()=>{throw redirect({to:'/compare'});},component:Outlet});
