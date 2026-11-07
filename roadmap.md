@@ -1,5 +1,5 @@
 # Website updates
-- [ ] Create and visually verify a Google Slides presentation covering the website, native Mac app and truthful capability status.
+- [x] Create and visually verify a Google Slides presentation covering the website, native Mac app and truthful capability status.
 - [x] Remove the original/comparison view from the app experience; show only the final styled native markup.
 - [ ] Upload the website and native app together to one public GitHub repository; blocked by declined permission to upload the remaining image asset.
 - [x] Make the native app laptop-focused with presentation-only changes.
