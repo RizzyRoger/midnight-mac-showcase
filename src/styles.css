@@ -212,7 +212,6 @@
 .gpu-loop { position: absolute; inset: 0; opacity: 0; animation: gpu-loop-visibility var(--motion-presentation-loop) linear infinite; }
 @keyframes gpu-quote-loop { 0%, 33.333%, 100% { opacity: 0; transform: translate(24px, -50%); } 4%, 28% { opacity: 1; transform: translate(0, -50%); } }
 @keyframes gpu-loop-visibility { 0%, 31%, 100% { opacity: 0; } 33.333%, 96% { opacity: 1; } }
-.gpu-loop * { animation-delay: 8s; }
 .gpu-art { position: absolute; width: min(1200px, 110%); height: 100%; right: 16%; top: 0; stroke: var(--gpu-line); stroke-width: 1.6; stroke-linejoin: bevel; opacity: .45; }
 .gpu-face, .gpu-side { fill: var(--gpu-fill); }
 .gpu-fin { stroke-width: .8; }
@@ -231,6 +230,7 @@
 .gpu-spark-2 { animation-name: spark-left-down; }
 .gpu-spark-3 { animation-name: spark-right-down; }
 .gpu-blade { stroke: var(--primary); fill: var(--gpu-fill); opacity: 0; animation: gpu-blade var(--motion-gpu-cycle) ease-in-out infinite; }
+.gpu-loop .hardware-gpu, .gpu-loop .hardware-gpu .gpu-half, .gpu-loop .gpu-cut, .gpu-loop .gpu-spark, .gpu-loop .gpu-blade { animation-delay: 8s; }
 @keyframes gpu-left { 0%, 21%, 50%, 100% { transform: translate(0, 0); } 29%, 49% { transform: translate(-32px, 8px); } }
 @keyframes gpu-right { 0%, 21%, 50%, 100% { transform: translate(0, 0); } 29%, 49% { transform: translate(32px, -8px); } }
 @keyframes hardware-conveyor { 0% { transform: translateX(1000px); opacity: 0; } 12%, 32% { transform: translateX(0); opacity: 1; } 48%, 49% { transform: translateX(-1000px); opacity: 0; } 50%, 100% { transform: translateX(1000px); opacity: 0; } }
