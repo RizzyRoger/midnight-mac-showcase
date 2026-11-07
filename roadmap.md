@@ -3,7 +3,7 @@
 - [x] Add three related images and emphasize privacy choices.
 - [x] Remove invented ticker statistics and correct capability claims.
 - [x] Verify desktop/mobile presentation and relevant tests.
-- [ ] Refine only the top navigation's bottom glow and hover/current/focus indicators.
-- [ ] Show coming-soon labels for unavailable editing and terminal tools.
-- [ ] Add a reference-inspired, vertically sliced GPU homepage background with reduced-motion support.
-- [ ] Verify navigation and GPU animation on desktop and mobile.
+- [x] Refine only the top navigation's bottom glow and hover/current/focus indicators.
+- [x] Show coming-soon labels for unavailable editing and terminal tools.
+- [x] Add a reference-inspired, vertically sliced GPU homepage background with reduced-motion support.
+- [x] Verify navigation and GPU animation on desktop and mobile.
