@@ -1,14 +1,18 @@
-# Welcome to your Lovable project
+# Midnight Mac Showcase
+
+I want to create a Mac landing page website to demo that program and the main app for this project with the dark brutalist style in html. First, plan out the website
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://midnight-mac-showcase.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/0475ede1-828d-4e91-bde0-23ec3e26f4dc).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +24,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
