@@ -198,7 +198,7 @@
 .home-hero { position: relative; isolation: isolate; overflow: hidden; }
 .gpu-backdrop { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .gpu-quote {
-  position: absolute; right: 18%; top: 50%; transform: translateY(-50%);
+  position: absolute; right: 18%; bottom: 7%;
   display: flex; align-items: center; gap: 18px; max-width: 560px;
   border: 2px solid var(--line); border-left: 3px solid var(--primary);
   background: color-mix(in oklch, var(--background) 88%, transparent);
@@ -209,7 +209,7 @@
 .gpu-quote-text { margin: 0; font: 15px/1.5 var(--font-mono); color: var(--foreground); }
 .gpu-quote-cite { display: block; margin-top: 8px; font-size: 11px; font-style: normal; color: var(--primary); text-transform: uppercase; letter-spacing: .08em; }
 .gpu-loop { position: absolute; inset: 0; opacity: 0; animation: gpu-loop-in .8s ease calc(var(--motion-quote-intro) - .8s) 1 forwards; }
-@keyframes gpu-quote-intro { 0% { opacity: 0; transform: translateY(-50%) translateX(24px); } 10%, 78% { opacity: 1; transform: translateY(-50%) translateX(0); } 100% { opacity: 0; transform: translateY(-50%) translateX(-24px); } }
+@keyframes gpu-quote-intro { 0% { opacity: 0; transform: translateX(24px); } 10%, 78% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(-24px); } }
 @keyframes gpu-loop-in { to { opacity: 1; } }
 .gpu-art { position: absolute; width: min(1200px, 110%); height: 100%; right: 16%; top: 0; stroke: var(--gpu-line); stroke-width: 1.6; stroke-linejoin: bevel; opacity: .45; }
 .gpu-face, .gpu-side { fill: var(--gpu-fill); }
