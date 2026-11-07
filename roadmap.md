@@ -2,13 +2,13 @@
 - [x] Add a Home control to the website top bar that opens the landing page, with current-page and focus states.
 - [x] Create and visually verify a Google Slides presentation covering the website, native Mac app and truthful capability status.
 - [x] Remove the original/comparison view from the app experience; show only the final styled native markup.
-- [ ] Upload the website and native app together to one public GitHub repository; blocked by declined permission to upload the remaining image asset.
+- [ ] Upload the website and native app together to one public GitHub repository; blocked because the current user has no access to the saved GitHub connection and cannot create one from this workspace role.
 - [x] Make the native app laptop-focused with presentation-only changes.
 - [x] Make the larger Sam portrait and concept text recur within the hardware animation loop; do not attribute an unverified quote.
 - [x] Supersede the two-repository upload with the requested combined public repository.
 - [x] Remove the illustrative homepage chat window.
 - [x] Create separate public SlashCompute-Website and SlashCompute-App repositories; app is a fork retaining complete original source.
-- [ ] Populate website source and apply native restyle in the combined public repository; blocked by declined image-upload permission.
+- [ ] Populate website source and apply native restyle in the combined public repository; blocked by the same GitHub connection access problem.
 - [x] Add textured palette, layered surfaces, restrained hover motion and screen-edge fades.
 - [x] Add three related images and emphasize privacy choices.
 - [x] Remove invented ticker statistics and correct capability claims.
