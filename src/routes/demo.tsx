@@ -41,7 +41,7 @@ type Step = 0 | 1 | 2 | 3 | 4 | 5;
 function Demo() {
   const [step, setStep] = useState<Step>(0);
   const [split, setSplit] = useState(true);
-  const [model, setModel] = useState(models[2].name);
+  const [model, setModel] = useState(models[2]?.name ?? "");
   const [log, setLog] = useState<Line[]>([]);
 
   const stream = (lines: Line[], next: Step) => {
@@ -124,7 +124,7 @@ function Demo() {
                 {hosts.map((h, i) => (
                   <div key={h}>
                     <p className="font-mono text-xs">{h}</p>
-                    <div className="h-3 border-2 border-foreground"><div className="h-full bg-primary" style={{ width: `${shares[i] * 100}%` }} /></div>
+                    <div className="h-3 border-2 border-foreground"><div className="h-full bg-primary" style={{ width: `${(shares[i] ?? 0) * 100}%` }} /></div>
                   </div>
                 ))}
               </div>
@@ -138,7 +138,7 @@ function Demo() {
                   <p>output: 1,240 tok</p>
                   <p className="mt-2 text-primary">charged: {total.toFixed(2)} credits</p>
                   <p className="mt-2 text-muted-foreground">contributor rewards:</p>
-                  {hosts.map((h, i) => <p key={h}>{h.split(" ")[0]} +{(total * 0.6 * shares[i]).toFixed(2)}</p>)}
+                  {hosts.map((h, i) => <p key={h}>{h.split(" ")[0]} +{(total * 0.6 * (shares[i] ?? 0)).toFixed(2)}</p>)}
                   <p className="mt-2 text-muted-foreground">local edits & tests: not billed</p>
                 </div>
               )}
