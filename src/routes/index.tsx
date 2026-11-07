@@ -38,10 +38,10 @@ function Home() {
   return (
     <>
       <section className="grid-bg border-b-2 border-foreground">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:py-24 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:py-24 lg:grid-cols-[1.1fr_1fr]">
           <div>
             <span className="label-mono bg-primary px-2 py-1 text-primary-foreground">macOS · Apple Silicon</span>
-            <h1 className="headline mt-6 text-6xl md:text-8xl">
+            <h1 className="headline mt-6 text-5xl md:text-7xl xl:text-8xl break-words">
               Code with a supercomputer you <span className="text-primary">don't own.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
