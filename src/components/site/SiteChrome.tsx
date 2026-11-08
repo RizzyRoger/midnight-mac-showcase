@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
 const nav = [
+  { to: "/", label: "Home" },
   { to: "/demo", label: "Demo" },
   { to: "/network", label: "Network" },
   { to: "/contribute", label: "Contribute" },
@@ -21,6 +22,8 @@ export function Header() {
             <Link
               key={n.to}
               to={n.to}
+              activeOptions={{ exact: true }}
+              activeProps={{ "aria-current": "page" as const }}
               className="site-nav-link label-mono hover:text-primary"
             >
               {n.label}
@@ -33,7 +36,7 @@ export function Header() {
       </div>
       <nav className="flex gap-4 overflow-x-auto border-t-2 border-foreground px-4 py-2 md:hidden">
         {nav.map((n) => (
-            <Link key={n.to} to={n.to} className="site-nav-link label-mono">{n.label}</Link>
+            <Link key={n.to} to={n.to} activeOptions={{ exact: true }} activeProps={{ "aria-current": "page" as const }} className="site-nav-link label-mono">{n.label}</Link>
         ))}
       </nav>
     </header>

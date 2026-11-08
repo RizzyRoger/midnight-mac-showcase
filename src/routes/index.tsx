@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { MacWindow, SectionTitle } from "@/components/site/SiteChrome";
-import { Eye, LockKeyhole, ShieldCheck, MessageSquare, Image, CirclePause, FolderLock, Terminal, Undo2 } from "lucide-react";
+import { SectionTitle } from "@/components/site/SiteChrome";
+import { Eye, LockKeyhole, ShieldCheck, MessageSquare, CirclePause, FolderLock, Terminal, Undo2 } from "lucide-react";
 import { capabilityItems } from "@/lib/capabilities";
 import { GpuBackdrop } from "@/components/site/GpuBackdrop";
 import useImage from "@/assets/use-mac.jpg";
@@ -41,7 +41,7 @@ function Home() {
     <>
       <section className="home-hero grid-bg border-b-2 border-foreground">
         <GpuBackdrop />
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:py-24 lg:grid-cols-[1.1fr_1fr]">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div>
             <span className="label-mono bg-primary px-2 py-1 text-primary-foreground">macOS · Apple Silicon</span>
             <h1 className="headline mt-6 text-5xl md:text-7xl">
@@ -56,15 +56,6 @@ function Home() {
               <Button asChild variant="brutOutline" size="lg"><Link to="/demo">Try the demo →</Link></Button>
             </div>
           </div>
-          <MacWindow title="chat & image analysis — /compute">
-            <div className="space-y-2 p-5 font-mono text-sm">
-              <p className="label-mono text-muted-foreground">Illustrative conversation</p>
-              <p className="flex items-center gap-2 text-primary"><Image size={18} /> image attached</p>
-              <p><span className="text-primary">you ›</span> What stands out in this image?</p>
-              <p className="mt-4 border-l-2 border-primary pl-4">A silver laptop sits on a textured desk. The screen shows a conversation with an image attached.</p>
-              <p className="label-mono pt-5 text-muted-foreground">Chat · image analysis<span className="blink">█</span></p>
-            </div>
-          </MacWindow>
         </div>
       </section>
 

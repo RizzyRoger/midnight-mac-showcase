@@ -34,3 +34,4 @@ use the editor.
 - Keep decorative GPU artwork in a browser-safe SVG component with CSS motion and a static reduced-motion fallback, so it remains crisp without adding playback dependencies.
 - Deliver native-app restyling as stylesheet-only changes against original repository source, preserving HTML, JavaScript, Python, API contracts and permissions byte-for-byte to avoid replacing real behavior with simulations.
 - The marketing website is the root page. `/compare` and `/website` redirect there. Native behavior runs in the Mac app, not on this site.
+- Keep native-restyle as the canonical CSS/texture-only laptop adaptation; mirror its stylesheet into the visual comparison without changing original markup or native behavior.

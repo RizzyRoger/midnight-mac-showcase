@@ -128,6 +128,7 @@
   --nav-edge-line: var(--foreground);
   --motion-gpu-cycle: 8s;
   --motion-hardware-loop: 16s;
+  --motion-presentation-loop: 24s;
   --gpu-line: color-mix(in oklch, var(--foreground) 48%, var(--line));
   --gpu-fill: color-mix(in oklch, var(--background) 85%, transparent);
 }
@@ -196,17 +197,32 @@
 .site-nav-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 5px; }
 .home-hero { position: relative; isolation: isolate; overflow: hidden; }
 .gpu-backdrop { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.gpu-quote {
+  position: absolute; right: 4%; top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center; gap: 24px; width: min(520px, 40%);
+  border: 2px solid var(--line); border-left: 3px solid var(--primary);
+  background: color-mix(in oklch, var(--background) 88%, transparent);
+  padding: 24px; opacity: 0;
+  animation: gpu-quote-loop var(--motion-presentation-loop) ease-in-out infinite;
+}
+.gpu-quote-portrait { width: 160px; height: 160px; object-fit: cover; image-rendering: pixelated; border: 2px solid var(--line); flex-shrink: 0; }
+.gpu-quote-text { margin: 0; min-width: 0; font: 19px/1.5 var(--font-mono); color: var(--foreground); }
+.gpu-quote-text p { margin: 12px 0; }
+.gpu-quote-cite { display: block; font-size: 10px; line-height: 1.6; font-style: normal; color: var(--primary); text-transform: uppercase; letter-spacing: 0; }
+.gpu-loop { position: absolute; inset: 0; opacity: 0; animation: gpu-loop-visibility var(--motion-presentation-loop) linear infinite; }
+@keyframes gpu-quote-loop { 0%, 33.333%, 100% { opacity: 0; transform: translate(24px, -50%); } 4%, 28% { opacity: 1; transform: translate(0, -50%); } }
+@keyframes gpu-loop-visibility { 0%, 31%, 100% { opacity: 0; } 33.333%, 96% { opacity: 1; } }
 .gpu-art { position: absolute; width: min(1200px, 110%); height: 100%; right: 16%; top: 0; stroke: var(--gpu-line); stroke-width: 1.6; stroke-linejoin: bevel; opacity: .45; }
 .gpu-face, .gpu-side { fill: var(--gpu-fill); }
 .gpu-fin { stroke-width: .8; }
 .gpu-chip { fill: var(--background); }
 .gpu-contact { stroke-width: 3; }
 .hardware-item { animation: hardware-conveyor var(--motion-hardware-loop) ease-in-out infinite; }
-.hardware-ram { animation-delay: -8s; }
+.hardware-ram { animation-delay: 0s; }
 .gpu-model { fill: var(--gpu-line); stroke: none; font: 16px var(--font-mono); }
 .gpu-half { animation: gpu-left var(--motion-hardware-loop) ease-in-out infinite; }
 .gpu-half-right { animation-name: gpu-right; }
-.hardware-ram .gpu-half { animation-delay: -8s; }
+.hardware-ram .gpu-half { animation-delay: 0s; }
 .gpu-cut { stroke: var(--primary); stroke-width: 2; stroke-dasharray: 423; stroke-dashoffset: 423; animation: gpu-cut var(--motion-gpu-cycle) ease-in-out infinite; }
 .gpu-sparks { stroke: var(--primary); }
 .gpu-spark { opacity: 0; animation: spark-left-up var(--motion-gpu-cycle) linear infinite; }
@@ -214,6 +230,7 @@
 .gpu-spark-2 { animation-name: spark-left-down; }
 .gpu-spark-3 { animation-name: spark-right-down; }
 .gpu-blade { stroke: var(--primary); fill: var(--gpu-fill); opacity: 0; animation: gpu-blade var(--motion-gpu-cycle) ease-in-out infinite; }
+.gpu-loop .hardware-gpu, .gpu-loop .hardware-gpu .gpu-half, .gpu-loop .gpu-cut, .gpu-loop .gpu-spark, .gpu-loop .gpu-blade { animation-delay: 8s; }
 @keyframes gpu-left { 0%, 21%, 50%, 100% { transform: translate(0, 0); } 29%, 49% { transform: translate(-32px, 8px); } }
 @keyframes gpu-right { 0%, 21%, 50%, 100% { transform: translate(0, 0); } 29%, 49% { transform: translate(32px, -8px); } }
 @keyframes hardware-conveyor { 0% { transform: translateX(1000px); opacity: 0; } 12%, 32% { transform: translateX(0); opacity: 1; } 48%, 49% { transform: translateX(-1000px); opacity: 0; } 50%, 100% { transform: translateX(1000px); opacity: 0; } }
@@ -223,7 +240,10 @@
 @keyframes spark-left-down { 0%, 40%, 100% { transform: translate(0, 0); opacity: 0; } 42% { transform: translate(-4px, 2px); opacity: .9; } 60%, 99% { transform: translate(-155px, 95px); opacity: 0; } }
 @keyframes spark-right-down { 0%, 40%, 100% { transform: translate(0, 0); opacity: 0; } 42% { transform: translate(4px, 2px); opacity: .9; } 60%, 99% { transform: translate(110px, 75px); opacity: 0; } }
 @keyframes gpu-blade { 0%, 26% { transform: translateY(-450px); opacity: 0; } 30% { opacity: .8; } 48% { transform: translateY(170px); opacity: .8; } 56%, 100% { transform: translateY(450px); opacity: 0; } }
-@media (max-width: 767px) { .gpu-art { width: 155%; right: -40%; opacity: .28; } }
+@media (max-width: 1199px) { .gpu-quote { gap: 14px; padding: 18px; width: 39%; } .gpu-quote-portrait { width: 112px; height: 112px; } .gpu-quote-text { font-size: 16px; } }
+@media (max-width: 899px) { .home-hero > .relative { padding-bottom: 300px; } .gpu-quote { right: 4%; left: 4%; width: auto; top: auto; bottom: 26px; transform: none; animation-name: gpu-quote-loop-small; } .gpu-quote-portrait { width: 128px; height: 128px; } .gpu-quote-text { font-size: 18px; } }
+@keyframes gpu-quote-loop-small { 0%, 33.333%, 100% { opacity: 0; transform: translateX(24px); } 4%, 28% { opacity: 1; transform: translateX(0); } }
+@media (max-width: 767px) { .gpu-art { width: 155%; right: -40%; opacity: .28; } .gpu-quote { gap: 12px; padding: 14px; } .gpu-quote-portrait { width: 104px; height: 104px; } .gpu-quote-text { font-size: 16px; } }
 .part-panel { display: flex; flex-direction: column; transition: transform 180ms ease, box-shadow 180ms ease; }
 .part-panel > div { flex: 1; }
 .capability-tile { transition: background-color 180ms ease; }
@@ -246,7 +266,7 @@
 @media (max-width: 767px) { .screen-fade-top { top: 0; height: 130px; } .screen-fade-bottom { height: 68px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 
-@media (prefers-reduced-motion: reduce) { .hardware-ram { display: none; } .hardware-gpu { opacity: 1; transform: none; } .gpu-cut, .gpu-sparks, .gpu-blade { display: none; } }
+@media (prefers-reduced-motion: reduce) { .hardware-ram { display: none; } .hardware-gpu { opacity: 1; transform: none; } .gpu-cut, .gpu-sparks, .gpu-blade { display: none; } .gpu-quote { display: none; } .gpu-loop { opacity: 1 !important; } }
 
 /* App preview: the same graphite surfaces, with a denser desktop workspace. */
 :root { --preview-grid: color-mix(in oklch, var(--line) 45%, transparent); --preview-selected: color-mix(in oklch, var(--primary) 6%, var(--card)); --preview-dialog-shadow: 10px 12px 0 var(--shadow-ink), 0 24px 80px color-mix(in oklch, var(--shadow-ink) 85%, transparent); }
@@ -414,6 +434,8 @@
 @media (max-width:1100px) { .preview-layout { grid-template-columns:190px minmax(0,1fr); } .preview-content { padding:32px 25px 65px; } .preview-two-col { gap:28px; } .preview-network-wire { width:40px; margin:0 8px; } .preview-network-wire span { left:10px; } }
 @media (max-width:767px) { .preview-topbar { padding:16px; flex-wrap:wrap; min-height:66px; } .preview-brand { font-size:22px; } .preview-top-meta { gap:12px; } .preview-badge { font-size:8px; padding:5px; } .preview-layout { display:block; } .preview-sidebar { padding:8px 10px; border-right:0; border-bottom:1px solid var(--line); } .preview-sidebar nav { display:flex; overflow-x:auto; gap:4px; } .preview-nav { padding:12px 10px; gap:7px; font-size:12px; flex-shrink:0; border-left:0; border-bottom:2px solid transparent; } .preview-nav.is-active { border-bottom-color:var(--primary); } .preview-nav small,.preview-nav-label,.preview-sidebar-bottom { display:none; } .preview-content { padding:26px 18px 80px; } .preview-screen-title { flex-wrap:wrap; margin-bottom:26px; padding-bottom:24px; } .preview-screen-title h1 { font-size:34px; } .preview-two-col { grid-template-columns:1fr; gap:36px; } .preview-two-col > section+section { border-top:1px solid var(--line); padding-top:26px; } .preview-network-art { height:200px; } .preview-statusbar { padding:12px; flex-wrap:wrap; } .preview-statusbar > span:nth-child(2) { order:3; width:100%; font-size:8px; } .preview-composer-actions { flex-wrap:wrap; gap:8px; } .preview-composer-actions > span { min-width:140px; } .preview-chat-settings .preview-field { width:100%; } .preview-chat-settings .preview-field:nth-of-type(2) { width:160px; } .preview-wallet-balance strong { font-size:48px; } .preview-wallet-balance > svg { right:0; width:38px; } .preview-wallet-stats strong { font-size:19px; } .preview-wallet-stats small { display:block; margin-top:8px; } .preview-modal { padding:22px; } .preview-review { padding:16px; } .preview-code-settings .preview-field { width:100%; } .preview-actions button { max-width:100%; white-space:normal; height:auto; min-height:36px; } .preview-code-empty h2 { font-size:25px; } .preview-chat-empty h2 { font-size:23px; } }
 .preview-comparison { height:100dvh; display:flex; flex-direction:column; background:var(--background); }
+.native-final-preview { height:100dvh; min-height:0; }
+.native-final-frame { width:100%; flex:1; min-height:0; border:0; background:var(--background); }
 .comparison-topbar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px; border-bottom:2px solid var(--foreground); }
 .comparison-topbar p { font:10px var(--font-mono); color:var(--muted-foreground); margin-top:8px; }
 .comparison-screen-nav { display:flex; overflow-x:auto; padding:8px 16px; border-bottom:1px solid var(--line); gap:4px; flex-shrink:0; }
