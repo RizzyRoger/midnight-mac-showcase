@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { LATEST_RELEASE_URL, macDownload, windowsDownload, type Download } from "@/lib/downloads";
+import { macDownload, windowsDownload, type Download } from "@/lib/downloads";
 
 export const Route = createFileRoute("/download")({
   head: () => ({
@@ -10,12 +10,12 @@ export const Route = createFileRoute("/download")({
       {
         name: "description",
         content:
-          "Download the SlashCompute Mac app for Apple Silicon (macOS 12+). Windows is coming soon.",
+          "Download the SlashCompute Mac app for Apple Silicon (macOS 14+). Windows is coming soon.",
       },
       { property: "og:title", content: "Download SlashCompute for Mac" },
       {
         property: "og:description",
-        content: "Early build for Apple Silicon Macs, macOS 12+. Windows coming soon.",
+        content: "Early build for Apple Silicon Macs, macOS 14+. Windows coming soon.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -45,7 +45,7 @@ function DownloadCard({ download }: { download: Download }) {
             <a href={url}>Download {extension(download.file)}</a>
           </Button>
           <a
-            href={LATEST_RELEASE_URL}
+            href={download.releaseNotes}
             target="_blank"
             rel="noopener noreferrer"
             className="label-mono text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
